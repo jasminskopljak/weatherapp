@@ -1,13 +1,32 @@
-html, body, #root {
+html, body, #root, .weather-app {
   height: 100%;
 }
-.weather-app {
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+.forecast-wrapper {
   height: 100%;
   max-width: 1140px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.main-title {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: auto;
 }
 
 footer {

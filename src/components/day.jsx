@@ -5,18 +5,19 @@ import electricalStormDay from '../images/electrical-storm-day.svg';
 import rainyDay from '../images/rainy-day.svg';
 import snowDay from '../images/snow-day.svg';
 import windyDay from '../images/windy-day.svg';
-import '../css/day.css'; 
+import '../css/day.css';
 
 class Day extends Component {
   render() {
     return (
       <div className="day">
         <p>{this.props.day}</p>
+        <p className="date-label">{this.props.label}</p>
         <img src={this.getWeatherIcon()} width="60px" height="60px" alt="Weather Icon" />
         <p>
-          20<span>&#176;</span>&nbsp;
-          10<span>&#176;</span>
+          {this.getTemperature(this.props.temp)}<span>&#176;</span>
         </p>
+        <p className="weather-status">{this.props.description}</p>
       </div>
     )
   }
@@ -49,6 +50,10 @@ class Day extends Component {
     }
 
     return weatherStatus;
+  }
+
+  getTemperature(temp) {
+    return Math.round(temp);
   }
 }
 
