@@ -6,7 +6,7 @@ import Home from './components/home';
 import LoadingSpinner from './images/loading.gif';
 // import DayDetails from './components/daydetails';
 
-const APIKEY = 'OPEN WEATHER - APIKEY';
+const APIKEY = '4d0c614a0cd30eaf90cffa2b1cf59b2b';
 const API = 'http://api.openweathermap.org/data/2.5/forecast?q=';
 const city = 'Sarajevo';
 const countryCode = 'ba';
@@ -21,7 +21,8 @@ class App extends Component {
           forecast: null,
           temp: null,
           urlPath: null,
-          dateLabel: null 
+          dateLabel: null,
+          weatherIcon: null
         }
       ],
       isLoaded: false,
@@ -88,8 +89,9 @@ class App extends Component {
         obj.urlPath = day.toLowerCase();
         obj.dateLabel = dateLabel;
         if (time === '1 PM') {
-          obj.forecast = timeslot.weather[0].main;
+          obj.forecast = timeslot.weather[0].description;
           obj.temp = timeslot.main.temp;
+          obj.weatherIcon = timeslot.weather[0].icon;
           days.push(obj);
         }
       }

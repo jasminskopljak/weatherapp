@@ -13,7 +13,7 @@ class Home extends Component {
               <Route 
                 exact 
                 path="/" 
-                render={props => <Day day={day.name} temp={day.temp} description={day.forecast} label={day.dateLabel} />} 
+                render={props => <Day day={day.name} temp={day.temp} description={day.forecast} label={day.dateLabel} icon={day.weatherIcon} />} 
               />
             </Link>
           ))}
