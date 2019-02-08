@@ -11,22 +11,27 @@ html, body, #root, .weather-app {
   margin: 0 auto;
 }
 
+.current-weather {
+  text-align: center;
+}
+
 .forecast-wrapper {
   height: 100%;
   max-width: 1140px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .main-title {
-  position: absolute;
+  /*position: absolute;
   top: 30px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  margin: auto;
+  margin: auto;*/
+  text-align: center;
 }
 
 footer {

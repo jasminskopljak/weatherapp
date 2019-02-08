@@ -6,7 +6,11 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1 className="main-title">Sarajevo - Next Five Days</h1>
+        <h1 className="main-title">Sarajevo</h1>
+        <div className="current-weather">
+          <h4>{this.props.currentWeather.forecast}</h4>
+          <img src={`https://openweathermap.org/img/w/${this.props.currentWeather.weatherIcon}.png`} />
+        </div>
         <div className="forecast-wrapper">
           {this.props.days.map( day => (
             <Link to={`${day.urlPath}`} key={day.name} className="day-link">

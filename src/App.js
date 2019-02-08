@@ -6,8 +6,9 @@ import Home from './components/home';
 import LoadingSpinner from './images/loading.gif';
 // import DayDetails from './components/daydetails';
 
-const APIKEY = '4d0c614a0cd30eaf90cffa2b1cf59b2b';
-const API = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+const APIKEY = 'OPENWEATHER API KEY';
+const NEXTFIVEDAYSAPIURL = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+const CURRENTWEATHERAPIURL = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const city = 'Sarajevo';
 const countryCode = 'ba';
 
@@ -25,27 +26,39 @@ class App extends Component {
           weatherIcon: null
         }
       ],
+      currentWeather: {
+        forecast: null,
+        weatherIcon: null  
+      },
       isLoaded: false,
       error: null
     }
   }
 
   componentDidMount() {
-    fetch(`${API}${city},${countryCode}&units=metric&APPID=${APIKEY}`)
-      .then(response => response.json())
-      .then( (result) => {
-        this.setState({
-          isLoaded: true,
-          nextFiveDays: this.nextFiveDays(result.list)
-        })
-      },
+    let apiCallOne = fetch(`${NEXTFIVEDAYSAPIURL}${city},${countryCode}&units=metric&APPID=${APIKEY}`)
+                      .then( (response) => response.json());
+
+    let apiCallTwo = fetch(`${CURRENTWEATHERAPIURL}${city},${countryCode}&units=metric&APPID=${APIKEY}`)
+                      .then( (response) => response.json());
+
+    console.log(apiCallTwo);
+
+    Promise.all([apiCallOne, apiCallTwo])
+    .then((data) => {
+      this.setState({
+        isLoaded: true,
+        nextFiveDays: this.nextFiveDays(data[0].list),
+        currentWeather: { forecast: data[1].weather[0].description, weatherIcon: data[1].weather[0].icon }
+      })
+    },
       (error) => {
         this.setState({
           isLoaded: true,
           error
         });
       }
-    )
+    );
   }
 
   render() {
@@ -55,21 +68,16 @@ class App extends Component {
       );
     }
 
+    console.log(this.state);
+
     return (
       <React.Fragment>
         <Router>
           <div className="weather-app">
-            <Route exact path="/" render={ props => <Home days={this.state.nextFiveDays} /> } />
+            <Route exact path="/" render={ props => <Home days={this.state.nextFiveDays} currentWeather={this.state.currentWeather} /> } />
             {/*<Route path="/:day" component={DayDetails} />*/}
           </div>
         </Router>
-        <footer>
-          <small>
-            Icons made by <a href="https://www.flaticon.com/authors/rami-mcmin" title="Rami McMin">Rami McMin </a> 
-            from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by 
-            <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"> CC 3.0 BY</a>
-          </small>
-        </footer>
       </React.Fragment>
     );
   }
