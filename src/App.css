@@ -11,26 +11,45 @@ html, body, #root, .weather-app {
   margin: 0 auto;
 }
 
-.current-weather {
-  text-align: center;
-}
-
 .forecast-wrapper {
   height: 100%;
   max-width: 1140px;
   margin: 0 auto;
+}
+
+.current-weather {
+  text-align: center;
+  max-width: 270px;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  margin-bottom: 20px;
+}
+
+.next-five-days {
   display: flex;
   justify-content: center;
-  /*align-items: center;*/
+}
+
+.current-weather-image-temperature {
+  margin: 10px 0 0;
+}
+
+.current-weather-image-temperature img {
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.current-weather-image-temperature span {
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+.current-weather h4 {
+  margin: 15px 0 25px;
+  text-transform: uppercase;
 }
 
 .main-title {
-  /*position: absolute;
-  top: 30px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  margin: auto;*/
   text-align: center;
 }
 

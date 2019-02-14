@@ -1,15 +1,14 @@
 .day {
-  margin: 0 auto;
   max-width: 120px;
   text-align: center;
   border: 1px solid lightgrey;
   padding: 5px 25px;
-  margin-right: 20px;
 }
 
 .day-link {
   color: #000;
   text-decoration: none;
+  margin: 5px;
 }
 
 .date-label {
